@@ -1,0 +1,21 @@
+package com.freshworks.platform.userservice.service;
+
+import com.freshworks.account.v2.GetAccountByProductIdRequest;
+import com.freshworks.commons.v2.Account;
+import com.freshworks.account.v2.AccountServiceGrpc;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AccountServiceImpl extends BaseService {
+
+    public String getAccountByProductAccountId(GetAccountByProductIdRequest request, String clientId, String clientSecret) {
+        Account account = null;
+        try {
+            AccountServiceGrpc.AccountServiceBlockingStub stub = createStub(AccountServiceGrpc.newBlockingStub(getChannel(clientId, clientSecret)), clientId, clientSecret);
+            account = stub.getAccountByProductAccountId(request);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return account != null ? account.toString() : null;
+    }
+}

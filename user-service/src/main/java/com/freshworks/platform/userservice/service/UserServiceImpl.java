@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends BaseService {
 
-    public String getUserByProductUserId(GetUserByProductIdRequest request, String clientId, String clientSecret) {
+    public String getUserByProductUserId(GetUserByProductIdRequest request) {
         User user = null;
         try {
-            UserServiceGrpc.UserServiceBlockingStub stub = createStub(UserServiceGrpc.newBlockingStub(getChannel(clientId, clientSecret)), clientId, clientSecret);
+            UserServiceGrpc.UserServiceBlockingStub stub = createStub(UserServiceGrpc.newBlockingStub(getChannel()));
             user = stub.getUserByProductUserId(request);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return user.toString();
+        return user != null ? user.toString() : null;
     }
 }

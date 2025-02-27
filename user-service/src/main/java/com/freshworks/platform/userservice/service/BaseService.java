@@ -15,20 +15,20 @@ public abstract class BaseService {
     @Autowired
     private SDKManagerConfig sdkManagerConfig;
 
-    protected CallCredentials getCallCredentials(String clientId, String clientSecret) throws Exception {
-        SDKManager sdkManager = sdkManagerConfig.createSDKManager(clientId, clientSecret);
+    protected CallCredentials getCallCredentials() throws Exception {
+        SDKManager sdkManager = sdkManagerConfig.createSDKManager();
         Token token = sdkManager.generateClientAccessToken();
         return sdkManager.generateCallCredentialsWithToken(token.getAccessToken());
     }
 
-    protected Channel getChannel(String clientId, String clientSecret) throws Exception {
-        SDKManager sdkManager = sdkManagerConfig.createSDKManager(clientId, clientSecret);
+    protected Channel getChannel() throws Exception {
+        SDKManager sdkManager = sdkManagerConfig.createSDKManager();
         return sdkManager.getChannel();
     }
 
-    protected <T extends AbstractStub<T>> T createStub(T stub, String clientId, String clientSecret) throws Exception {
-        CallCredentials callCredentials = getCallCredentials(clientId, clientSecret);
-        Channel channel = getChannel(clientId, clientSecret);
+    protected <T extends AbstractStub<T>> T createStub(T stub) throws Exception {
+        CallCredentials callCredentials = getCallCredentials();
+        Channel channel = getChannel();
         return stub.withCallCredentials(callCredentials).withChannel(channel);
     }
 }

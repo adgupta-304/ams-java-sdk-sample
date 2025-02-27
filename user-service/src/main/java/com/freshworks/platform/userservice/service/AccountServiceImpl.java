@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountServiceImpl extends BaseService {
 
-    public String getAccountByProductAccountId(GetAccountByProductIdRequest request, String clientId, String clientSecret) {
+    public String getAccountByProductAccountId(GetAccountByProductIdRequest request) {
         Account account = null;
         try {
-            AccountServiceGrpc.AccountServiceBlockingStub stub = createStub(AccountServiceGrpc.newBlockingStub(getChannel(clientId, clientSecret)), clientId, clientSecret);
+            AccountServiceGrpc.AccountServiceBlockingStub stub = createStub(AccountServiceGrpc.newBlockingStub(getChannel()));
             account = stub.getAccountByProductAccountId(request);
         } catch (Exception e) {
             System.out.println(e.getMessage());

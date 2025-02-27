@@ -18,12 +18,10 @@ public class AccountController {
     }
 
     @GetMapping("/product/{productAccountId}")
-    public String getAccountByProductAccountId(@PathVariable String productAccountId,
-                                               @RequestParam String clientId,
-                                               @RequestParam String clientSecret) {
+    public String getAccountByProductAccountId(@PathVariable String productAccountId) {
         GetAccountByProductIdRequest request = GetAccountByProductIdRequest.newBuilder()
                 .setProductAccountId(StringValue.of(productAccountId))
                 .build();
-        return accountService.getAccountByProductAccountId(request, clientId, clientSecret);
+        return accountService.getAccountByProductAccountId(request);
     }
 }

@@ -19,13 +19,11 @@ public class UserController {
 
     @GetMapping("/accounts/product/{productAccountId}/{productUserId}")
     public String getUserByProductUserId(@PathVariable String productUserId,
-                                         @PathVariable String productAccountId,
-                                         @RequestParam String clientId,
-                                         @RequestParam String clientSecret) {
+                                         @PathVariable String productAccountId) {
         GetUserByProductIdRequest request = GetUserByProductIdRequest.newBuilder()
                 .setProductUserId(StringValue.of(productUserId))
                 .setProductAccountId(StringValue.of(productAccountId))
                 .build();
-        return userService.getUserByProductUserId(request, clientId, clientSecret);
+        return userService.getUserByProductUserId(request);
     }
 }

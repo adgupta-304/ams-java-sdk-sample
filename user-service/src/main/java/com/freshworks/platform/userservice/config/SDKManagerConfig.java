@@ -20,7 +20,7 @@ public class SDKManagerConfig {
 
     public SDKManager createSDKManager() throws SSLException, ClientCredentialsNotConfiguredException, RegionNotConfiguredException {
         return new SDKManager(Configuration.builder()
-                .forRegion(Configuration.FreshworksRegion.PHOENIX)
+                .forRegion(Configuration.FreshworksRegion.SANDBOX)
                 .setClientCredentials(clientId, clientSecret)
                 .build());
     }

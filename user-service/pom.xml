@@ -29,31 +29,9 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.freshworks.platform</groupId>
-            <artifactId>grpc-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-<!--        freshid java sdk dependency-->
-        <dependency>
             <groupId>com.freshworks</groupId>
             <artifactId>freshid-sdk</artifactId>
-            <version>2.5.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
-        </dependency>
-        <dependency>
-            <groupId>io.opentracing.contrib</groupId>
-            <artifactId>opentracing-grpc</artifactId>
-            <version>0.0.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <version>3.0.8</version>
         </dependency>
     </dependencies>
 

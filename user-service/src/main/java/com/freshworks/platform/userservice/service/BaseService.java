@@ -1,6 +1,5 @@
 package com.freshworks.platform.userservice.service;
 
-import com.freshworks.platform.userservice.config.SDKManagerConfig;
 import com.freshworks.sdk.SDKManager;
 import com.freshworks.sdk.authorization.Token;
 import io.grpc.CallCredentials;
@@ -13,16 +12,14 @@ import org.springframework.stereotype.Service;
 public abstract class BaseService {
 
     @Autowired
-    private SDKManagerConfig sdkManagerConfig;
+    private SDKManager sdkManager;
 
     protected CallCredentials getCallCredentials() throws Exception {
-        SDKManager sdkManager = sdkManagerConfig.createSDKManager();
         Token token = sdkManager.generateClientAccessToken();
         return sdkManager.generateCallCredentialsWithToken(token.getAccessToken());
     }
 
     protected Channel getChannel() throws Exception {
-        SDKManager sdkManager = sdkManagerConfig.createSDKManager();
         return sdkManager.getChannel();
     }
 
